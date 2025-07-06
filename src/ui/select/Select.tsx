@@ -17,7 +17,7 @@ const Select = ({ options, label, value, setValue }: SelectProps) => {
 				onChange={(e) => setValue(String(e.target.value))}
 			>
 				{options.map((option) => (
-					<option key={option.id} value={option.code}>
+					<option key={option.id} value={option.short_code}>
 						{option.name}
 					</option>
 				))}

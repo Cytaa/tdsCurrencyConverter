@@ -1,4 +1,4 @@
-import type { getCurrenciesResponse } from './types';
+import type { convertCurrencyResponse, getCurrenciesResponse } from './types';
 
 const routes = {
 	currencies: 'currencies',
@@ -24,7 +24,7 @@ export const convertCurrency = async (
 	from: string,
 	to: string,
 	amount: number
-): Promise<unknown> => {
+): Promise<convertCurrencyResponse> => {
 	const data = await fetch(
 		`${import.meta.env.VITE_CURRENCY_BEACON_API_URL}/${
 			routes.convert

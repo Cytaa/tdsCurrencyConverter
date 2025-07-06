@@ -9,6 +9,7 @@ const Input = ({ value, setValue, label }: InputProps) => {
 		<label className="flex justify-between mt-2 mb-2 w-full">
 			{label}
 			<input
+				min={0}
 				className="border w-60"
 				type="number"
 				value={Number(value).toString()}

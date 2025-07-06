@@ -19,3 +19,12 @@ export interface getCurrenciesResponse extends response {
 		thousands_separator: string;
 	}>;
 }
+
+export interface convertCurrencyResponse extends response {
+	timestamp: number;
+	date: string;
+	from: string;
+	to: string;
+	amount: number;
+	value: number;
+}
