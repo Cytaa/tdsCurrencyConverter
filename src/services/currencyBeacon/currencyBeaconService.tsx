@@ -16,8 +16,7 @@ export const getCurrencies = async (): Promise<getCurrenciesResponse> => {
 		throw new Error(`Error fetching currencies: ${data.statusText}`);
 	}
 
-	const jsonData: getCurrenciesResponse = await data.json();
-	return jsonData;
+	return await data.json();
 };
 
 export const convertCurrency = async (
