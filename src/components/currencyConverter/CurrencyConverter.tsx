@@ -57,6 +57,7 @@ const CurrencyConverter = () => {
 						value={toCurrency}
 						setValue={setToCurrency}
 						label="Converted currency"
+						isInputReadOnly
 					/>
 					<button
 						className="mt-6 border"

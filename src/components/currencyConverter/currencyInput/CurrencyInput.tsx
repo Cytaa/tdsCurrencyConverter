@@ -17,6 +17,7 @@ interface CurrencyInputProps {
 		amount: number;
 	};
 	label: string;
+	isInputReadOnly?: boolean;
 }
 
 const CurrencyInput = ({
@@ -24,6 +25,7 @@ const CurrencyInput = ({
 	value,
 	setValue,
 	label,
+	isInputReadOnly = false,
 }: CurrencyInputProps) => {
 	const setSelectValue = (newValue: string) => {
 		setValue({ code: newValue, amount: value.amount });
@@ -40,7 +42,12 @@ const CurrencyInput = ({
 				value={value.code}
 				setValue={setSelectValue}
 			/>
-			<Input label="Amount" setValue={setInputValue} value={value.amount} />
+			<Input
+				label="Amount"
+				setValue={setInputValue}
+				value={value.amount}
+				readOnly={isInputReadOnly}
+			/>
 		</div>
 	);
 };
