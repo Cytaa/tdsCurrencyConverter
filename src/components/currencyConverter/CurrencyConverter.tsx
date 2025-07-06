@@ -8,8 +8,14 @@ import {
 } from '../../services/currencyBeacon/currencyBeaconService';
 
 const CurrencyConverter = () => {
-	const [fromCurrency, setFromCurrency] = useState<[string, number]>(['', 0]);
-	const [toCurrency, setToCurrency] = useState<[string, number]>(['', 0]);
+	const [fromCurrency, setFromCurrency] = useState<{
+		code: string;
+		amount: number;
+	}>({ code: '', amount: 0 });
+	const [toCurrency, setToCurrency] = useState<{
+		code: string;
+		amount: number;
+	}>({ code: '', amount: 0 });
 
 	const { isLoading, data: currencies } = useQuery({
 		queryKey: ['currencies'],
@@ -17,14 +23,14 @@ const CurrencyConverter = () => {
 	});
 
 	const { refetch } = useQuery({
-		queryKey: [fromCurrency, toCurrency[0]],
+		queryKey: [fromCurrency, toCurrency.code],
 		queryFn: async () => {
 			const data = await convertCurrency(
-				fromCurrency[0],
-				toCurrency[0],
-				fromCurrency[1]
+				fromCurrency.code,
+				toCurrency.code,
+				fromCurrency.amount
 			);
-			setToCurrency([toCurrency[0], data.value]);
+			setToCurrency({ code: toCurrency.code, amount: data.value });
 		},
 
 		enabled: false,

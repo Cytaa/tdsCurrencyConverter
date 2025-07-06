@@ -6,8 +6,16 @@ import type { getCurrenciesResponse } from '../../../services/currencyBeacon/typ
 
 interface CurrencyInputProps {
 	options: getCurrenciesResponse['response'];
-	setValue: Dispatch<SetStateAction<[string, number]>>;
-	value: [string, number];
+	setValue: Dispatch<
+		SetStateAction<{
+			code: string;
+			amount: number;
+		}>
+	>;
+	value: {
+		code: string;
+		amount: number;
+	};
 	label: string;
 }
 
@@ -18,10 +26,10 @@ const CurrencyInput = ({
 	label,
 }: CurrencyInputProps) => {
 	const setSelectValue = (newValue: string) => {
-		setValue([newValue, value[1]]);
+		setValue({ code: newValue, amount: value.amount });
 	};
 	const setInputValue = (newValue: number) => {
-		setValue([value[0], newValue]);
+		setValue({ code: value.code, amount: newValue });
 	};
 
 	return (
@@ -29,10 +37,10 @@ const CurrencyInput = ({
 			<Select
 				options={options}
 				label={label}
-				value={value[0]}
+				value={value.code}
 				setValue={setSelectValue}
 			/>
-			<Input label="Amount" setValue={setInputValue} value={value[1]} />
+			<Input label="Amount" setValue={setInputValue} value={value.amount} />
 		</div>
 	);
 };

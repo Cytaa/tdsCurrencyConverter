@@ -18,7 +18,7 @@ const Select = ({ options, label, value, setValue }: SelectProps) => {
 			>
 				{options.map((option) => (
 					<option key={option.id} value={option.short_code}>
-						{option.name}
+						{option.short_code} | {option.name}
 					</option>
 				))}
 			</select>
